@@ -10,6 +10,10 @@ require_once './clases/usuario.php';
 require_once './clases/mascota.php';
 require_once './clases/turno.php';
 
+//nuevos
+require_once './clases/expedientesBase.php';
+
+
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
@@ -82,6 +86,44 @@ $app->post('/traerUsuarioPorTipo',function ($request,$response){
     $response->write(usuario::traerUsuarioPorTipo($tipo));
     return $response;
 });
+
+
+///////////////////////////////////////////////////////////////////////
+//************ EXPEDIENTES  ************//
+
+//AGREGAR Mascota  *************************/
+$app->post('/agregarExpediente',function($request,$response){
+    $datos = $request->getParsedBody();
+    $tipo = $datos['tipo'];
+    $numero = $datos['numero'];
+    $anio = $datos['anio'];
+    $iniciador = $datos['iniciador'];
+    $caratula = $datos['caratula'];
+    $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$iniciador,$caratula));
+ }); //})->add($mdwAuth);
+
+//TRAER TODOS LOS Mascotas *************************/
+$app->get('/traerTodosLosExpedientes',function ($request,$response){
+    $response->write(expedientesBase::traerTodosLosExpedientes());
+    return $response;
+});
+// }); //})->add($mdwAuth);
+
+//TRAER Mascota POR ID *************************/
+$app->post('/traerExpedientePorId',function ($request,$response){
+    $datos = $request->getParsedBody();
+    $id = $datos['id'];
+    $response->write(expedientesBase::traerExpedientePorId($id));
+    return $response;
+ }); //})->add($mdwAuth);
+
+
+
+
+
+
+
+
 
 
 ///////////////////////////////////////////////////////////////////////
