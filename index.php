@@ -106,9 +106,16 @@ $app->post('/agregarExpediente',function($request,$response){
     $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario));
  }); //})->add($mdwAuth);
 
-//TRAER TODOS LOS Mascotas *************************/
+//TRAER TODOS LOS Expedientes *************************/
 $app->get('/traerTodosLosExpedientes',function ($request,$response){
     $response->write(expedientesBase::traerTodosLosExpedientes());
+    return $response;
+});
+// }); //})->add($mdwAuth);
+
+//TRAER TODOS LOS Expedientes *************************/
+$app->get('/traerTodosLosExpedientesConUsuario',function ($request,$response){
+    $response->write(expedientesBase::traerTodosLosExpedientesConUsuario());
     return $response;
 });
 // }); //})->add($mdwAuth);

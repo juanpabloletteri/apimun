@@ -39,11 +39,23 @@ class expedientesBase {
         return $rta; 
     }    
 
-    //TRAER TODOS LOS mascotas
+    //TRAER TODOS LOS expedientes
     public static function traerTodosLosExpedientes()
     {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
         $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM expedientesbase");
+        $consulta->execute();
+        $consulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        return json_encode($consulta);
+    }
+        //TRAER TODOS LOS expedientes
+    public static function traerTodosLosExpedientesConUsuario()
+    {
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * 
+        FROM expedientesbase As exp,usuarios As us 
+        WHERE exp.id_usuario=us.id_usuario");
+        
         $consulta->execute();
         $consulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
         return json_encode($consulta);
