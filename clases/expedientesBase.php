@@ -2,29 +2,36 @@
 
 class expedientesBase {
 
-    private $_id_mascota;
-    private $_id_duenio;
-    private $_nombre;
-    private $_raza;
-    private $_color;
-    private $_edad;
+    private $_id_expediente;
     private $_tipo;
-
+    private $_numero;
+    private $_anio;
+    private $_fecha;
+    private $_tema;
+    private $_fojas;
+    private $_iniciador;
+    private $_direccion;
+    private $_caratula;
+    private $_id_usuario;
     
     //AGREGAR mascota
-    public static function agregarExpediente($tipo,$numero,$anio,$iniciador,$caratula)
+    public static function agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario)
     {
         $rta = false;
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
         $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into  
-        exp (tipo,numero,anio,iniciador,caratula)
-        values(:tipo,:numero,:anio,:iniciador,:caratula)");
+        expedientesbase (tipo,numero,anio,fecha,tema,fojas,iniciador,caratula,id_usuario)
+        values(:tipo,:numero,:anio,:fecha,:tema,:fojas,:iniciador,:caratula,:id_usuario)");
 
         $consulta->bindValue(':tipo',$tipo);
         $consulta->bindValue(':numero',$numero);
         $consulta->bindValue(':anio', $anio);
+        $consulta->bindValue(':fecha', $fecha);
+        $consulta->bindValue(':tema', $tema);
+        $consulta->bindValue(':fojas', $fojas);
         $consulta->bindValue(':iniciador', $iniciador);
         $consulta->bindValue(':caratula', $caratula);
+        $consulta->bindValue(':id_usuario', $id_usuario);
         
         if($consulta->execute()){
             $rta = $objetoAccesoDato->RetornarUltimoIdInsertado();
@@ -36,7 +43,7 @@ class expedientesBase {
     public static function traerTodosLosExpedientes()
     {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM exp");
+        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM expedientesbase");
         $consulta->execute();
         $consulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
         return json_encode($consulta);
@@ -46,7 +53,7 @@ class expedientesBase {
     public static function traerExpedientePorId($id)
     {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM exp WHERE id_exp=:id");
+        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM expedientesbase WHERE id_expediente=:id");
         $consulta->bindValue(":id",$id);
         $consulta->execute();
         $datos = $consulta->fetchAll(PDO::FETCH_ASSOC);

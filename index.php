@@ -97,9 +97,13 @@ $app->post('/agregarExpediente',function($request,$response){
     $tipo = $datos['tipo'];
     $numero = $datos['numero'];
     $anio = $datos['anio'];
+    $fecha = $datos['fecha'];
+    $tema = $datos['tema'];
+    $fojas = $datos['fojas'];
     $iniciador = $datos['iniciador'];
     $caratula = $datos['caratula'];
-    $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$iniciador,$caratula));
+    $id_usuario = $datos['id_usuario'];
+    $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario));
  }); //})->add($mdwAuth);
 
 //TRAER TODOS LOS Mascotas *************************/
