@@ -103,7 +103,8 @@ $app->post('/agregarExpediente',function($request,$response){
     $iniciador = $datos['iniciador'];
     $caratula = $datos['caratula'];
     $id_usuario = $datos['id_usuario'];
-    $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario));
+    $id_oficina = $datos['id_oficina'];
+    $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario,$id_oficina));
  }); //})->add($mdwAuth);
 
 //TRAER TODOS LOS Expedientes *************************/

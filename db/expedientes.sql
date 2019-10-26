@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2019 a las 05:31:26
+-- Tiempo de generación: 26-10-2019 a las 03:43:31
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -25,37 +25,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `exp`
---
-
-CREATE TABLE `exp` (
-  `id_exp` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `anio` int(11) NOT NULL,
-  `iniciador` varchar(100) NOT NULL,
-  `caratula` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16le;
-
---
--- Volcado de datos para la tabla `exp`
---
-
-INSERT INTO `exp` (`id_exp`, `tipo`, `numero`, `anio`, `iniciador`, `caratula`) VALUES
-(1, 0, 25582, 2019, 'telefonica', 'tendido aereo'),
-(2, 1, 33211, 2019, 'Telmex', 'tendido subterraneo'),
-(3, 1, 25441, 2019, 'edesur', 'apertura en vereda '),
-(4, 1, 12334, 2018, 'aysa', 'aperturas agosto'),
-(5, 1, 123423, 2017, 'aysa', 'aperturas enero');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `expedientesbase`
 --
 
 CREATE TABLE `expedientesbase` (
-  `id_exp` int(11) NOT NULL,
+  `id_expediente` int(11) NOT NULL,
   `tipo` int(11) NOT NULL,
   `numero` int(11) NOT NULL,
   `anio` int(11) NOT NULL,
@@ -65,46 +39,21 @@ CREATE TABLE `expedientesbase` (
   `iniciador` varchar(100) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `caratula` varchar(250) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `id_oficina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16le;
 
 --
 -- Volcado de datos para la tabla `expedientesbase`
 --
 
-INSERT INTO `expedientesbase` (`id_exp`, `tipo`, `numero`, `anio`, `fecha`, `tema`, `fojas`, `iniciador`, `direccion`, `caratula`, `id_usuario`) VALUES
-(1, 2, 25412, 2019, '0000-00-00', 'algo', 3, 'edesur', 'villegas 4574', 'apertura en lasdjkas', 1),
-(2, 0, 15451, 2200, '0000-00-00', 'infraccion', 0, 'telefonica', 'mirte 1564', 'poste ', 0),
-(3, 1, 2555, 2019, '0000-00-00', 'oficio', 11, 'edesur', 'villegas 4561', 'apertura en vereda', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `expedientes_base`
---
-
-CREATE TABLE `expedientes_base` (
-  `id_exp` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `anio` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `tema` varchar(20) NOT NULL,
-  `fojas` int(11) NOT NULL,
-  `iniciador` varchar(100) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
-  `caratula` varchar(250) NOT NULL,
-  `id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16le;
-
---
--- Volcado de datos para la tabla `expedientes_base`
---
-
-INSERT INTO `expedientes_base` (`id_exp`, `tipo`, `numero`, `anio`, `fecha`, `tema`, `fojas`, `iniciador`, `direccion`, `caratula`, `id_usuario`) VALUES
-(1, 2, 25412, 2019, '0000-00-00', 'algo', 3, 'edesur', 'villegas 4574', 'apertura en lasdjkas', 1),
-(2, 0, 15451, 2200, '0000-00-00', 'infraccion', 0, 'telefonica', 'mirte 1564', 'poste ', 0),
-(3, 1, 2555, 2019, '0000-00-00', 'oficio', 11, 'edesur', 'villegas 4561', 'apertura en vereda', 2);
+INSERT INTO `expedientesbase` (`id_expediente`, `tipo`, `numero`, `anio`, `fecha`, `tema`, `fojas`, `iniciador`, `direccion`, `caratula`, `id_usuario`, `id_oficina`) VALUES
+(1, 2, 25412, 2019, '0000-00-00', 'algo', 3, 'edesur', 'villegas 4574', 'apertura en lasdjkas', 23, 1),
+(2, 0, 15451, 2200, '0000-00-00', 'infraccion', 0, 'telefonica', 'mirte 1564', 'poste ', 24, 2),
+(3, 1, 2555, 2019, '0000-00-00', 'oficio', 11, 'edesur', 'villegas 4561', 'apertura en vereda', 25, 1),
+(4, 0, 123434, 12, '2019-10-09', '23324342', 23443342, '234234234', '', '423234342', 23, 2),
+(5, 0, 123465, 2019, '2019-10-25', 'temaaaa', 32, 'habilitac', '', 'habilitacion kiosco', 24, 1),
+(6, 1, 123123, 2011, '2019-10-02', 'temamammama', 33, 'via publica', '', 'apertura en calzada', 27, 2);
 
 -- --------------------------------------------------------
 
@@ -182,45 +131,39 @@ CREATE TABLE `usuarios` (
   `password` varchar(50) COLLATE utf16_spanish_ci NOT NULL,
   `nombre` varchar(50) COLLATE utf16_spanish_ci NOT NULL,
   `apellido` varchar(50) COLLATE utf16_spanish_ci NOT NULL,
-  `tipo` int(11) NOT NULL
+  `tipo` int(11) NOT NULL,
+  `id_oficina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `mail`, `password`, `nombre`, `apellido`, `tipo`) VALUES
-(1, '1', '1', 'roberto', 'carlos', 1),
-(2, 'rruben@gmail.com', '111111', 'ricardo', 'ruben', 2),
-(3, 'mrod@gmail.com', '111111', 'micaela', 'rodriguez', 2),
-(4, 'mlett@gmail.com', '111111', 'mario', 'mazzeo', 2),
-(5, '2', '2', '2', '2', 2),
-(7, 'pepitop@hotmail.com', '111111', 'pepe', 'torres', 2),
-(9, 'cacho@gmail.com', '111111', 'cacho', 'castacha', 2),
-(21, 'nuevo@gmail.com', '2', 'nuevo', 'cliente', 2),
-(22, '3', '3', 'Juan', 'Pablo', 3);
+INSERT INTO `usuarios` (`id_usuario`, `mail`, `password`, `nombre`, `apellido`, `tipo`, `id_oficina`) VALUES
+(1, '1', '1', 'roberto', 'carlos', 1, 0),
+(2, 'rruben@gmail.com', '111111', 'ricardo', 'ruben', 2, 0),
+(3, 'mrod@gmail.com', '111111', 'micaela', 'rodriguez', 2, 0),
+(4, 'mlett@gmail.com', '111111', 'mario', 'mazzeo', 2, 0),
+(5, '2', '2', '2', '2', 2, 0),
+(7, 'pepitop@hotmail.com', '111111', 'pepe', 'torres', 2, 0),
+(9, 'cacho@gmail.com', '111111', 'cacho', 'castacha', 2, 0),
+(15, '3', '3', 'Juan', 'Pablo', -3, 0),
+(21, 'nuevo@gmail.com', '2', 'nuevo', 'cliente', 2, 0),
+(23, '0', '1', '0', '0', 0, 0),
+(24, '11', '1', '0', '0', 11, 1),
+(25, '12', '1', '0', '0', 12, 1),
+(26, '21', '1', '0', '0', 21, 2),
+(27, '22', '1', '0', '0', 22, 2);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `exp`
---
-ALTER TABLE `exp`
-  ADD PRIMARY KEY (`id_exp`);
-
---
 -- Indices de la tabla `expedientesbase`
 --
 ALTER TABLE `expedientesbase`
-  ADD PRIMARY KEY (`id_exp`);
-
---
--- Indices de la tabla `expedientes_base`
---
-ALTER TABLE `expedientes_base`
-  ADD PRIMARY KEY (`id_exp`);
+  ADD PRIMARY KEY (`id_expediente`);
 
 --
 -- Indices de la tabla `mascotas`
@@ -248,22 +191,10 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `exp`
---
-ALTER TABLE `exp`
-  MODIFY `id_exp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT de la tabla `expedientesbase`
 --
 ALTER TABLE `expedientesbase`
-  MODIFY `id_exp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `expedientes_base`
---
-ALTER TABLE `expedientes_base`
-  MODIFY `id_exp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `mascotas`
@@ -281,7 +212,7 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas

@@ -19,7 +19,7 @@ class usuario {
         if ($consulta->execute()){
             $datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
             if (isset($datos[0]['nombre'])){
-                $datospayload = array('id_usuario'=>$datos[0]['id_usuario'],'nombre'=>$datos[0]['nombre'],'tipo'=>$datos[0]['tipo']);
+                $datospayload = array('id_usuario'=>$datos[0]['id_usuario'],'nombre'=>$datos[0]['nombre'],'tipo'=>$datos[0]['tipo'],'id_oficina'=>$datos[0]['id_oficina']);
                 return AutentificadorJWT::CrearToken($datospayload);
             }
         }

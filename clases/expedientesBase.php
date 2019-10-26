@@ -13,15 +13,16 @@ class expedientesBase {
     private $_direccion;
     private $_caratula;
     private $_id_usuario;
+    private $_id_oficina;
     
     //AGREGAR mascota
-    public static function agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario)
+    public static function agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario,$id_oficina)
     {
         $rta = false;
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
         $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into  
-        expedientesbase (tipo,numero,anio,fecha,tema,fojas,iniciador,caratula,id_usuario)
-        values(:tipo,:numero,:anio,:fecha,:tema,:fojas,:iniciador,:caratula,:id_usuario)");
+        expedientesbase (tipo,numero,anio,fecha,tema,fojas,iniciador,caratula,id_usuario,id_oficina)
+        values(:tipo,:numero,:anio,:fecha,:tema,:fojas,:iniciador,:caratula,:id_usuario,:id_oficina)");
 
         $consulta->bindValue(':tipo',$tipo);
         $consulta->bindValue(':numero',$numero);
@@ -32,7 +33,8 @@ class expedientesBase {
         $consulta->bindValue(':iniciador', $iniciador);
         $consulta->bindValue(':caratula', $caratula);
         $consulta->bindValue(':id_usuario', $id_usuario);
-        
+        $consulta->bindValue(':id_oficina', $id_oficina);
+
         if($consulta->execute()){
             $rta = $objetoAccesoDato->RetornarUltimoIdInsertado();
         }
