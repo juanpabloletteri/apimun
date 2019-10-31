@@ -8,7 +8,7 @@ class expedientesBase {
     private $_anio;
     private $_fecha;
     private $_tema;
-    private $_fojas;
+    private $_localidad;
     private $_iniciador;
     private $_direccion;
     private $_caratula;
@@ -16,20 +16,20 @@ class expedientesBase {
     private $_id_oficina;
     
     //AGREGAR mascota
-    public static function agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$fojas,$iniciador,$caratula,$id_usuario,$id_oficina)
+    public static function agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$localidad,$iniciador,$caratula,$id_usuario,$id_oficina)
     {
         $rta = false;
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
         $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into  
-        expedientesbase (tipo,numero,anio,fecha,tema,fojas,iniciador,caratula,id_usuario,id_oficina)
-        values(:tipo,:numero,:anio,:fecha,:tema,:fojas,:iniciador,:caratula,:id_usuario,:id_oficina)");
+        expedientesbase (tipo,numero,anio,fecha,tema,localidad,iniciador,caratula,id_usuario,id_oficina)
+        values(:tipo,:numero,:anio,:fecha,:tema,:localidad,:iniciador,:caratula,:id_usuario,:id_oficina)");
 
         $consulta->bindValue(':tipo',$tipo);
         $consulta->bindValue(':numero',$numero);
         $consulta->bindValue(':anio', $anio);
         $consulta->bindValue(':fecha', $fecha);
         $consulta->bindValue(':tema', $tema);
-        $consulta->bindValue(':fojas', $fojas);
+        $consulta->bindValue(':localidad', $localidad);
         $consulta->bindValue(':iniciador', $iniciador);
         $consulta->bindValue(':caratula', $caratula);
         $consulta->bindValue(':id_usuario', $id_usuario);

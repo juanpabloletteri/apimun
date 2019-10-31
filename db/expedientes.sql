@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2019 a las 03:43:31
+-- Tiempo de generación: 31-10-2019 a las 19:57:47
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -35,9 +35,9 @@ CREATE TABLE `expedientesbase` (
   `anio` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `tema` varchar(20) NOT NULL,
-  `fojas` int(11) NOT NULL,
   `iniciador` varchar(100) NOT NULL,
   `direccion` varchar(100) NOT NULL,
+  `localidad` int(4) NOT NULL,
   `caratula` varchar(250) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_oficina` int(11) NOT NULL
@@ -47,13 +47,15 @@ CREATE TABLE `expedientesbase` (
 -- Volcado de datos para la tabla `expedientesbase`
 --
 
-INSERT INTO `expedientesbase` (`id_expediente`, `tipo`, `numero`, `anio`, `fecha`, `tema`, `fojas`, `iniciador`, `direccion`, `caratula`, `id_usuario`, `id_oficina`) VALUES
-(1, 2, 25412, 2019, '0000-00-00', 'algo', 3, 'edesur', 'villegas 4574', 'apertura en lasdjkas', 23, 1),
-(2, 0, 15451, 2200, '0000-00-00', 'infraccion', 0, 'telefonica', 'mirte 1564', 'poste ', 24, 2),
-(3, 1, 2555, 2019, '0000-00-00', 'oficio', 11, 'edesur', 'villegas 4561', 'apertura en vereda', 25, 1),
-(4, 0, 123434, 12, '2019-10-09', '23324342', 23443342, '234234234', '', '423234342', 23, 2),
-(5, 0, 123465, 2019, '2019-10-25', 'temaaaa', 32, 'habilitac', '', 'habilitacion kiosco', 24, 1),
-(6, 1, 123123, 2011, '2019-10-02', 'temamammama', 33, 'via publica', '', 'apertura en calzada', 27, 2);
+INSERT INTO `expedientesbase` (`id_expediente`, `tipo`, `numero`, `anio`, `fecha`, `tema`, `iniciador`, `direccion`, `localidad`, `caratula`, `id_usuario`, `id_oficina`) VALUES
+(1, 2, 25412, 2019, '0000-00-00', 'algo', 'edesur', 'villegas 4574', -11, 'apertura en lasdjkas', 23, 1),
+(2, 0, 15451, 2200, '0000-00-00', 'infraccion', 'telefonica', 'mirte 1564', -12, 'poste ', 24, 2),
+(3, 1, 2555, 2019, '0000-00-00', 'oficio', 'edesur', 'villegas 4561', -14, 'apertura en vereda', 25, 1),
+(4, 0, 123434, 12, '2019-10-09', '23324342', '234234234', '', -15, '423234342', 23, 2),
+(5, 0, 123465, 2019, '2019-10-25', 'temaaaa', 'habilitac', '', -11, 'habilitacion kiosco', 24, 1),
+(6, 1, 123123, 2011, '2019-10-02', 'temamammama', 'via publica', '', -11, 'apertura en calzada', 27, 2),
+(7, 0, 111111111, 2147483647, '2019-10-31', '11111111', '111111111', '', -11, '111111111', 25, 1),
+(8, 2, 2147483647, 2147483647, '2019-10-31', '222222222222', '22222222', '', -12, '22222222222222\r\n', 25, 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +196,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `expedientesbase`
 --
 ALTER TABLE `expedientesbase`
-  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `mascotas`
