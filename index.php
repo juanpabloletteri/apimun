@@ -99,12 +99,13 @@ $app->post('/agregarExpediente',function($request,$response){
     $anio = $datos['anio'];
     $fecha = $datos['fecha'];
     $tema = $datos['tema'];
+    $direccion = $datos['direccion'];
     $localidad = $datos['localidad'];
     $iniciador = $datos['iniciador'];
     $caratula = $datos['caratula'];
     $id_usuario = $datos['id_usuario'];
     $id_oficina = $datos['id_oficina'];
-    $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$localidad,$iniciador,$caratula,$id_usuario,$id_oficina));
+    $response->write(expedientesBase::agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$direccion,$localidad,$iniciador,$caratula,$id_usuario,$id_oficina));
  }); //})->add($mdwAuth);
 
 //TRAER TODOS LOS Expedientes *************************/

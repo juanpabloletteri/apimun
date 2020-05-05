@@ -16,19 +16,20 @@ class expedientesBase {
     private $_id_oficina;
     
     //AGREGAR mascota
-    public static function agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$localidad,$iniciador,$caratula,$id_usuario,$id_oficina)
+    public static function agregarExpediente($tipo,$numero,$anio,$fecha,$tema,$direccion,$localidad,$iniciador,$caratula,$id_usuario,$id_oficina)
     {
         $rta = false;
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
         $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into  
-        expedientesbase (tipo,numero,anio,fecha,tema,localidad,iniciador,caratula,id_usuario,id_oficina)
-        values(:tipo,:numero,:anio,:fecha,:tema,:localidad,:iniciador,:caratula,:id_usuario,:id_oficina)");
+        expedientesbase (tipo,numero,anio,fecha,tema,direccion,localidad,iniciador,caratula,id_usuario,id_oficina)
+        values(:tipo,:numero,:anio,:fecha,:tema,:direccion,:localidad,:iniciador,:caratula,:id_usuario,:id_oficina)");
 
         $consulta->bindValue(':tipo',$tipo);
         $consulta->bindValue(':numero',$numero);
         $consulta->bindValue(':anio', $anio);
         $consulta->bindValue(':fecha', $fecha);
         $consulta->bindValue(':tema', $tema);
+        $consulta->bindValue(':direccion', $direccion);
         $consulta->bindValue(':localidad', $localidad);
         $consulta->bindValue(':iniciador', $iniciador);
         $consulta->bindValue(':caratula', $caratula);
