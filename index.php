@@ -79,7 +79,36 @@ $app->post('/leerHeader', function (Request $request, Response $response) {
     $newResponse = $response->withJson($header, 200); 
     return $newResponse;
 });
-//************************//
+
+$app->post('/traerPsicologo',function ($request,$response){
+    $datos = $request->getParsedBody();
+    $id = $datos['id'];
+    $response->write(psicologo::traerPsicologo($id));
+    return $response;
+ }); //})->add($mdwAuth);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//**************///////////////////////////////////////******************//
 
 /////PARA EL PROFESOR
 //TRAER USUARIO POR ID *************************/
