@@ -1,25 +1,26 @@
 <?php
 
-class usuario {
+class psicologo {
 
-    private $_id_usuario;
-    private $_usuario;
-    private $_password;
+    private $_id_psicologo;
     private $_nombre;
     private $_apellido;
-    private $_tipo;
+    private $_usuario;
+    private $_password;
+    private $_mail;
+    private $_activo;
 
     //LOGIN
     public static function Login($usuario, $password){
         $rta = "error";
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM usuarios WHERE usuario=:usuario AND password=:password");
+        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM psicologos WHERE usuario=:usuario AND password=:password");
         $consulta->bindValue(':usuario',$usuario);
         $consulta->bindValue(':password', $password);
         if ($consulta->execute()){
             $datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            if (isset($datos[0]['usuario'])){
-                $datospayload = array('id_usuario'=>$datos[0]['id_usuario'],'usuario'=>$datos[0]['usuario'],'tipo'=>$datos[0]['tipo']);
+            if (isset($datos[0]['nombre'])){
+                $datospayload = array('id_psicologo'=>$datos[0]['id_psicologo'],'nombre'=>$datos[0]['nombre'],'apellido'=>$datos[0]['apellido'],'usuario'=>$datos[0]['usuario']);
                 return AutentificadorJWT::CrearToken($datospayload);
             }
         }

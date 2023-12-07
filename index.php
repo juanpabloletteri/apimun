@@ -6,11 +6,14 @@ require_once './vendor/autoload.php';
 require_once './clases/AccesoDatos.php';
 require_once './clases/AutentificadorJWT.php';
 
+//nuevos
+require_once './clases/psicologo.php';
+
+//viejos
 require_once './clases/usuario.php';
 require_once './clases/mascota.php';
 require_once './clases/turno.php';
 
-//nuevos
 require_once './clases/expedientesBase.php';
 
 
@@ -41,9 +44,9 @@ $app->get('[/]', function (Request $request, Response $response) {
 //************ LOGIN ************//
 $app->post('/login', function (Request $request, Response $response) {
     $datos = $request->getParsedBody();
-    $mail = $datos["mail"];
+    $usuario = $datos["usuario"];
     $password = $datos["password"];
-    $newResponse = $response->withJson(Usuario::Login($mail,$password));
+    $newResponse = $response->withJson(Usuario::Login($usuario,$password));
     //$response->write($pw);
     return $newResponse;
 });
